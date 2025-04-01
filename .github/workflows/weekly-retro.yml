@@ -1,0 +1,30 @@
+name: Weekly Retrospective Generator
+
+on:
+  schedule:
+    - cron: '0 4 * * 5'  # 매주 금요일 13:00 KST (UTC 4:00)
+  workflow_dispatch:     # 수동 실행도 가능
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📂 Checkout repository
+        uses: actions/checkout@v3
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: 📝 Run weekly generator script
+        run: python .github/scripts/generate_weekly.py
+
+      - name: ✅ Commit and push if changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "📝 자동 생성: ${GITHUB_RUN_ID} 회고" || echo "no changes"
+          git push
