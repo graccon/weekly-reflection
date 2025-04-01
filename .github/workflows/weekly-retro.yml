@@ -22,9 +22,12 @@ jobs:
         run: python .github/scripts/generate_weekly.py
 
       - name: ✅ Commit and push if changes
+        env:
+          TOKEN: ${{ secrets.GH_PAT }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
           git add .
-          git commit -m "📝 자동 생성: ${GITHUB_RUN_ID} 회고" || echo "no changes"
-          git push
+          git commit -m "docs: ${GITHUB_RUN_ID} 회고" || echo "no changes"
+          git push origin main
