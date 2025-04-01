@@ -2,7 +2,7 @@ name: Weekly Retrospective Generator
 
 on:
   schedule:
-    - cron: '0 4 * * 5'  # 매주 금요일 13:00 KST (UTC 4:00)
+    - cron: '0 23 * * 0'  # 매주 월요일 오전 8시
   workflow_dispatch:     # 수동 실행도 가능
 
 jobs:

@@ -8,7 +8,7 @@
 | Productivity|             |
 ---
 
-### 2. 이번 주에 한 일
+### 2. to-do list
 
 - [ ] 
 
