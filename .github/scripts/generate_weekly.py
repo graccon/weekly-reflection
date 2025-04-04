@@ -40,5 +40,3 @@ os.makedirs(folder, exist_ok=True)
 # 회고 파일 생성
 with open(filepath, "w", encoding="utf-8") as f:
     f.write(filled)
-
-print(f"✅ {filepath} 생성 완료!")
