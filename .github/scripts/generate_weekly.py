@@ -1,5 +1,6 @@
 import datetime
 import os
+import calendar
 
 # 오늘 날짜 정보
 today = datetime.date.today()
@@ -8,10 +9,11 @@ month = today.month
 
 # 주차 계산 (해당 월 기준 몇 번째 주인지)
 def get_week_of_month(date):
-    first_day = date.replace(day=1)
-    adjusted_dom = date.day + first_day.weekday()
-    return int((adjusted_dom - 1) / 7 + 1)
-
+    month_calendar = calendar.Calendar().monthdayscalendar(date.year, date.month)
+    for i, week in enumerate(month_calendar):
+        if date.day in week:
+            return i + 1
+        
 week = get_week_of_month(today)
 
 # 파일명: WK2025_04_01.md
