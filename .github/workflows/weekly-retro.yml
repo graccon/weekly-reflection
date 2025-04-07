@@ -31,10 +31,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
           
-          git fetch origin
-          git checkout -B main origin/main 
-          git pull origin main --rebase 
-
+          git pull
           git add .
           git commit -m "docs: ${GITHUB_RUN_ID} 회고" || echo "no changes"
           git push origin main
